@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<title>Web Monitoring Device</title>
+<link rel="stylesheet" href="style.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+<h2>Web Monitoring Simulasi Device</h2>
+
+
+<table>
+<thead>
+<tr><th>Device</th><th>Status</th><th>Bandwidth</th></tr>
+</thead>
+<tbody id="deviceTable"></tbody>
+</table>
+
+
+<canvas id="bandwidthChart"></canvas>
+
+
+<h3>Log</h3>
+<div id="log"></div>
+
+
+<script src="chart.js"></script>
+</body>
+</html>
