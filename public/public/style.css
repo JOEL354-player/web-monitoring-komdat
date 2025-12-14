@@ -1,6 +1,0 @@
-body { font-family: Arial; padding: 20px; }
-table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
-th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
-#log { background: #f4f4f4; padding: 10px; height: 120px; overflow-y: auto; }
-.online { color: green; }
-.offline { color: red; }
