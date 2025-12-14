@@ -9,7 +9,6 @@ const io = new Server(server);
 
 app.use(express.static('public'));
 
-// Inisialisasi device
 const devices = [
   new Device(1, 'Router-1'),
   new Device(2, 'Switch-1'),
@@ -18,12 +17,22 @@ const devices = [
 
 let logs = [];
 
-// REST API (data historis)
+// fungsi konversi ke object biasa
+function serializeDevices() {
+  return devices.map(d => ({
+    id: d.id,
+    name: d.name,
+    status: d.status,
+    bandwidth: d.bandwidth
+  }));
+}
+
+// REST API
 app.get('/api/devices', (req, res) => {
-  res.json(devices);
+  res.json(serializeDevices());
 });
 
-// Simulasi realtime
+// simulasi realtime
 setInterval(() => {
   devices.forEach(device => {
     const prevStatus = device.status;
@@ -36,12 +45,17 @@ setInterval(() => {
     }
   });
 
-  io.emit('update', { devices, logs });
+  io.emit('update', {
+    devices: serializeDevices(),
+    logs
+  });
 }, 2000);
 
-// WebSocket
 io.on('connection', socket => {
-  socket.emit('update', { devices, logs });
+  socket.emit('update', {
+    devices: serializeDevices(),
+    logs
+  });
 });
 
 server.listen(3000, () => {
